@@ -9,6 +9,8 @@
 
 Pure JavaScript/TypeScript implementation of the Ed448 elliptic curve (RFC 8032) for EdDSA signature. Uses the `jsbn` library for big integer operations. Uses `jssha` for `SHAKE256` hash calculation.
 
+MODIFIED TO FETCH CORE BLOCKCHAIN! NOT THE CLASSICAL ED448! PLEASE DO NOT USE OUTSIDE CORE BLOCKCHAIN
+
 ## Installation
 
 Using `npm`:
