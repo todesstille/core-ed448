@@ -406,16 +406,30 @@ class PureEdDSA {
       throw new Error("Missing message input");
     }
 
-    const khash = this.H(privkey, null, false);
-    const a = from_le(this.clamp(khash.slice(0, truediv(this.b, 8))));
-    const seed = khash.slice(truediv(this.b, 8));
-    const r = from_le(this.H(seed.concat(msg), ctx, hflag)).mod(this.l);
-    const R = this.B.mul(r).encode();
-    const h = from_le(this.H(R.concat(pubkey).concat(msg), ctx, hflag)).mod(
-      this.l,
-    );
-    const S = tobytes(r.add(h.multiply(a)).mod(this.l), this.b);
-    return R.concat(S);
+    if ((privkey[56] & 0x80) == 0) {
+
+      const khash = this.H(privkey, null, false);
+      const a = from_le(this.clamp(khash.slice(0, truediv(this.b, 8))));
+      const seed = khash.slice(truediv(this.b, 8));
+      const r = from_le(this.H(seed.concat(msg), ctx, hflag)).mod(this.l);
+      const R = this.B.mul(r).encode();
+      const h = from_le(this.H(R.concat(pubkey).concat(msg), ctx, hflag)).mod(
+        this.l,
+      );
+      const S = tobytes(r.add(h.multiply(a)).mod(this.l), this.b);
+      return R.concat(S);
+
+    } else {
+      const a = from_le(this.clamp(privkey.slice(0, truediv(this.b, 8))));
+      const seed = this.clamp(privkey.slice(0, truediv(this.b, 8)));
+      const r = from_le(this.H(seed.concat(msg), ctx, hflag)).mod(this.l);
+      const R = this.B.mul(r).encode();
+      const h = from_le(this.H(R.concat(pubkey).concat(msg), ctx, hflag)).mod(
+        this.l,
+      );
+      const S = tobytes(r.add(h.multiply(a)).mod(this.l), this.b);
+      return R.concat(S);
+    }
   }
 
   verify(
