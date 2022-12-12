@@ -1,15 +1,8 @@
-# ed448-js [![GitHub license](https://img.shields.io/github/license/Iskander508/Ed448-js?style=flat)](https://github.com/Iskander508/Ed448-js/blob/master/LICENSE) [![Tests](https://github.com/Iskander508/Ed448-js/workflows/CI/badge.svg)](https://github.com/Iskander508/Ed448-js/actions) [![npm version][npm-img]][npm-url] [![Coverage Status][coveralls-img]][coveralls-url] [![Monthly Downloads][downloads-img]][downloads-url]
-
-[npm-url]: https://www.npmjs.com/package/ed448-js
-[npm-img]: https://img.shields.io/npm/v/ed448-js
-[coveralls-url]: https://coveralls.io/github/Iskander508/Ed448-js?branch=master
-[coveralls-img]: https://coveralls.io/repos/Iskander508/Ed448-js/badge.svg?branch=master&service=github
-[downloads-url]: https://www.npmjs.com/package/ed448-js
-[downloads-img]: https://img.shields.io/npm/dm/ed448-js.svg
-
-Pure JavaScript/TypeScript implementation of the Ed448 elliptic curve (RFC 8032) for EdDSA signature. Uses the `jsbn` library for big integer operations. Uses `jssha` for `SHAKE256` hash calculation.
+# ed448-js 
 
 MODIFIED TO FETCH CORE BLOCKCHAIN! NOT THE CLASSICAL ED448! PLEASE DO NOT USE OUTSIDE CORE BLOCKCHAIN
+
+ Uses `jssha` for `SHAKE256` hash calculation.
 
 ## Installation
 
