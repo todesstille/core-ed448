@@ -379,6 +379,11 @@ class PureEdDSA {
     if (privkey.length !== truediv(this.b, 8)) {
       throw new Error(`Invalid private key length: ${privkey.length} `);
     }
+    
+    if ((privkey[56] & 0x80) == 1) {
+      const a = from_le(this.clamp(privkey.slice(0, truediv(this.b, 8)))); //Use original key then clamp
+      return this.B.mul(a).encode();
+    }
 
     const khash = this.H(privkey, null, false);
     const a = from_le(this.clamp(khash.slice(0, truediv(this.b, 8))));
